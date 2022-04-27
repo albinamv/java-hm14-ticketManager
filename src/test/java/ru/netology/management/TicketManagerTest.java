@@ -31,7 +31,7 @@ class TicketManagerTest {
     @Test
     public void shouldSearchAndSortByPrice() {
         Ticket[] expected = {vdkMskEqual, vdkMsk, vdkMskExp};
-        Ticket[] actual = manager.searchBy("VVO", "SVO");
+        Ticket[] actual = manager.findAll("VVO", "SVO");
 
         assertArrayEquals(expected, actual);
     }
@@ -40,17 +40,8 @@ class TicketManagerTest {
     public void shouldSearchAndSortByTravelTime() {
         comparator = new TicketByTravelTimeComparator();
 
-        Ticket[] expected = {mskKgd};
-        Ticket[] actual = manager.searchAndSortByTravelTime("SVO", "KGD", comparator);
-
-        assertArrayEquals(expected, actual);
-    }
-    @Test
-    public void shouldSearchAndSortByTravelTimeIfOneResult() {
-        comparator = new TicketByTravelTimeComparator();
-
         Ticket[] expected = {vdkMskExp, vdkMsk, vdkMskEqual};
-        Ticket[] actual = manager.searchAndSortByTravelTime("VVO", "SVO", comparator);
+        Ticket[] actual = manager.findAll("VVO", "SVO", comparator);
 
         assertArrayEquals(expected, actual);
     }
@@ -58,15 +49,23 @@ class TicketManagerTest {
     @Test
     public void shouldReturnNoResults() {
         Ticket[] expected = {};
-        Ticket[] actual = manager.searchBy("VVO", "KHV");
+        Ticket[] actual = manager.findAll("VVO", "BAX");
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void shouldReturnOneResult() {
-        Ticket[] expected = {};
-        Ticket[] actual = manager.searchBy("PKC", "VDK");
+    public void shouldReturnOneResultSortedByPrice() {
+        Ticket[] expected = {pkcVdk};
+        Ticket[] actual = manager.findAll("PKC", "VVO");
+
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldReturnOneResultSortedByTime() {
+        Ticket[] expected = {pkcVdk};
+        Ticket[] actual = manager.findAll("PKC", "VVO", new TicketByTravelTimeComparator());
 
         assertArrayEquals(expected, actual);
     }
