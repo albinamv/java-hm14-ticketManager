@@ -17,7 +17,6 @@ public class TicketManager {
         repository.add(ticket);
     }
 
-    // TODO вынести логику поиска в отдельный метод
     public Ticket[] findAll(String from, String to) {
         Ticket[] result = search(from, to);
         if (result.length > 1) {
