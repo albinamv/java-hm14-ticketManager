@@ -16,7 +16,7 @@ public class TicketManager {
         repository.add(ticket);
     }
 
-    public Ticket[] searchBy(String from, String to) {
+    public Ticket[] findAll(String from, String to) {
         Ticket[] result = new Ticket[0]; // тут будем хранить подошедшие запросу продукты
         for (Ticket ticket : repository.findAll()) {
             if (matches(ticket, from, to)) {

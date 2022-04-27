@@ -30,7 +30,7 @@ class TicketManagerTest {
     @Test
     public void shouldSearchByAndSort() {
         Ticket[] expected = {vdkMsk, vdkMskEqual, vdkMskExp};
-        Ticket[] actual = manager.searchBy("VVO", "SVO");
+        Ticket[] actual = manager.findAll("VVO", "SVO");
 
         assertArrayEquals(expected, actual);
     }
@@ -38,15 +38,15 @@ class TicketManagerTest {
     @Test
     public void shouldReturnNoResults() {
         Ticket[] expected = {};
-        Ticket[] actual = manager.searchBy("VVO", "KHV");
+        Ticket[] actual = manager.findAll("VVO", "KHV");
 
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldReturnOneResult() {
-        Ticket[] expected = {};
-        Ticket[] actual = manager.searchBy("PKC", "VDK");
+        Ticket[] expected = {pkcVdk};
+        Ticket[] actual = manager.findAll("PKC", "VVO");
 
         assertArrayEquals(expected, actual);
     }
