@@ -9,7 +9,7 @@ import java.util.Comparator;
 @AllArgsConstructor
 @Getter
 @Setter
-public class Ticket implements Comparable<Ticket>{
+public class Ticket implements Comparable<Ticket> {
     private int id;
     private int price;
     private String departure;
