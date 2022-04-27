@@ -38,10 +38,8 @@ class TicketManagerTest {
 
     @Test
     public void shouldSearchAndSortByTravelTime() {
-        comparator = new TicketByTravelTimeComparator();
-
         Ticket[] expected = {vdkMskExp, vdkMsk, vdkMskEqual};
-        Ticket[] actual = manager.findAll("VVO", "SVO", comparator);
+        Ticket[] actual = manager.findAll("VVO", "SVO", new TicketByTravelTimeComparator());
 
         assertArrayEquals(expected, actual);
     }
