@@ -28,7 +28,7 @@ class TicketManagerTest {
     }
 
     @Test
-    public void shouldSearchByAndSort() {
+    public void shouldSearchAndSort() {
         Ticket[] expected = {vdkMsk, vdkMskEqual, vdkMskExp};
         Ticket[] actual = manager.findAll("VVO", "SVO");
 
